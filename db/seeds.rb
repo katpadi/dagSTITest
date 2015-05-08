@@ -6,6 +6,12 @@
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
-f = Food.create
-i = Ingredient.create
-f.children << i
+f = Food.create!
+i = Ingredient.create!
+
+Link.create ancestor: f, descendant: i
+
+puts f.children.inspect
+puts f.children.first == i
+puts i.ancestors.inspect
+puts i.ancestors.first == f
